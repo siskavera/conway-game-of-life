@@ -1,4 +1,5 @@
 jupyterlab
 numpy
 pandas
+pytest
 seaborn
