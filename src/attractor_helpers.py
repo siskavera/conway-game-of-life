@@ -14,4 +14,14 @@ def has_duplicated_states(saved_states):
 
 
 def get_attractor_and_period(saved_states):
-    return [[[]]], 0
+    last_state = saved_states[-1, :, :]
+
+    i = -1  # TODO Throw if no duplicate
+    for i in range(saved_states.shape[0]):
+        if numpy.array_equal(last_state, saved_states[i, :, :]):
+            break
+
+    attractor = saved_states[i+1:, :, :]
+    period = attractor.shape[0]
+
+    return attractor, period
