@@ -2,10 +2,16 @@ import numpy
 
 
 def get_n_neighbours(state):
-    n_neighbours = numpy.roll(state, 1, axis=0)
-    n_neighbours = n_neighbours + numpy.roll(state, 1, axis=1)
-    n_neighbours = n_neighbours + numpy.roll(state, -1, axis=0)
-    n_neighbours = n_neighbours + numpy.roll(state, -1, axis=1)
+    up = numpy.roll(state, 1, axis=0)
+    down = numpy.roll(state, -1, axis=0)
+    right = numpy.roll(state, 1, axis=1)
+    left = numpy.roll(state, -1, axis=1)
+    upright = numpy.roll(up, 1, axis=1)
+    upleft = numpy.roll(up, -1, axis=1)
+    downright = numpy.roll(down, 1, axis=1)
+    downleft = numpy.roll(down, -1, axis=1)
+
+    n_neighbours = up + down + right + left + upright + upleft + downright + downleft
 
     return n_neighbours
 
