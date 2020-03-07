@@ -34,18 +34,57 @@ class TestInit():
         numpy.testing.assert_array_equal(initial_state, test_ca.state)
 
 
-@patch.object(cellular_automata, "get_next_state", MagicMock(return_value=numpy.zeros([2, 3])))
-def test_find_attractor():
-    test_ca = cellular_automata.CellularAutomata((2, 3))
-    test_state = numpy.zeros([2, 3])
+@patch.object(cellular_automata, "get_next_state")
+class TestFindAttractor():
+    def test_find_attractor_fixed_point(self, mock_get_next_state):
+        test_state = numpy.zeros([2, 3])
+        test_ca = cellular_automata.CellularAutomata(initial_state=test_state)
+        mock_get_next_state.return_value = numpy.zeros([2, 3])
 
-    expected_attractor = numpy.zeros([1, 2, 3])
-    expected_period = 1
+        expected_attractor = numpy.zeros([1, 2, 3])
+        expected_period = 1
 
-    attractor, period = test_ca.find_attractor(test_state)
+        attractor, period = test_ca.find_attractor()
 
-    numpy.testing.assert_array_equal(attractor, expected_attractor)
-    assert period == expected_period
+        numpy.testing.assert_array_equal(attractor, expected_attractor)
+        assert period == expected_period
+
+    def test_find_attractor_cycle(self, mock_get_next_state):
+        test_ca = cellular_automata.CellularAutomata(initial_state=numpy.zeros([2, 2]))
+        mock_get_next_state.side_effect = [
+            numpy.array([[0, 1], [1, 1]]),
+            numpy.array([[1, 1], [1, 1]]),
+            numpy.array([[0, 1], [0, 1]]),
+            numpy.array([[0, 1], [1, 1]])
+        ]
+
+        expected_attractor = numpy.array([
+            [[1, 1], [1, 1]],
+            [[0, 1], [0, 1]],
+            [[0, 1], [1, 1]],
+        ])
+        expected_period = 3
+
+        attractor, period = test_ca.find_attractor()
+
+        numpy.testing.assert_array_equal(expected_attractor, attractor)
+        assert period == expected_period
+
+
+@patch.object(cellular_automata, "get_next_state")
+def test_evolve(mock_get_next_state):
+    expected_states = [
+        numpy.array([[0, 1], [1, 1]]),
+        numpy.array([[1, 1], [1, 1]]),
+        numpy.array([[0, 1], [0, 1]]),
+        numpy.array([[0, 1], [1, 1]])
+    ]
+
+    test_ca = cellular_automata.CellularAutomata(initial_state=expected_states[0])
+    mock_get_next_state.side_effect = expected_states[1:]
+
+    for i, state in enumerate(test_ca.evolve(3)):
+        numpy.testing.assert_array_equal(expected_states[i], state)
 
 
 def test_get_max_period():
