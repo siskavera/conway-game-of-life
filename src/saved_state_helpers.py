@@ -1,6 +1,6 @@
 import numpy
 
-def get_attractor_and_period(saved_states):
+def get_attractor_and_period_from_saved_states(saved_states):
     last_state = saved_states[-1, :, :]
 
     i = -1  # TODO Throw if no duplicate
@@ -12,6 +12,7 @@ def get_attractor_and_period(saved_states):
     period = attractor.shape[0]
 
     return attractor, period
+
 
 def has_duplicated_states(saved_states):
     n_saved = saved_states.shape[0]
