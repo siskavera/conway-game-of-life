@@ -1,9 +1,9 @@
 import numpy
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch
 
 import pytest
 
-from src import cellular_automata
+from src.cellular_automata import cellular_automata
 
 
 class TestInit():
@@ -111,11 +111,12 @@ def test_evolve_and_check_for_attractor(mock_get_next_state):
     test_ca = cellular_automata.CellularAutomata(initial_state=expected_states[0])
     mock_get_next_state.side_effect = expected_states[1:]
 
-    for i, state in enumerate(test_ca.evolve_and_check_for_attractor(9)):
+    for i, state in enumerate(test_ca.evolve_and_check_for_attractor(8)):
         numpy.testing.assert_array_equal(expected_states[i], state)
 
     numpy.testing.assert_array_equal(test_ca.attractor, expected_attractor)
     assert test_ca.attractor_period == expected_period
+    assert test_ca.attractor_found_after == 2
 
 
 def test_get_max_period():

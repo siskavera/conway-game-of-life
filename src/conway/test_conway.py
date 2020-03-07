@@ -1,5 +1,5 @@
 import numpy
-from src.conway import get_n_neighbours, get_next_state
+from src.conway.conway import get_n_neighbours, get_next_state
 
 
 def test_get_n_neighbours():
