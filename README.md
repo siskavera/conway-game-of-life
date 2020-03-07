@@ -1,19 +1,29 @@
-# Modeling homework
+# Conway's Game of Life
 
-## Task
-Your task is to create and analyze [Game of Life](https://en.wikipedia.org/wiki/Conway's_Game_of_Life) simulations on a 6x6 grid. 
-The grid is folded to a toroid shape, so the squares on the top edge are neighboring 
-the squares on the bottom edge and the squares on the left edge are neighboring the squares on the right. 
+This project simulates Conway's Game of Life and explores its possible attractors.
 
-An attractor is either a state of the system that persists indefinitely or a sequence of states 
-that is repeated in the same order indefinitely.
+## Structure
+Simulation code is under `src` and exploratory notebooks are under `notebooks`.
 
-The program you write should be able to:
-* run a simulation with a user defined starting condition
-* display the results of the simulation
-* determine if the simulation has reached an attractor
+## Getting Started
 
-Run simulations and analyze their results to answer the following questions:
-* What possible attractors are there in this system?
-* Which attractor is most likely to manifest if we initialize the system randomly?
-* Is there an initial condition which produces a state after the 100 billionth iteration of the simulation, that is not part of any attractor?
+### Prerequisites
+* Python 3.5+
+* pip
+* virtualenv (alternatively Conda, pipenv, ...)
+
+Tested with Python 3.7 under Ubuntu 18.04
+
+### Setting up virtual environment
+There are two alternatives:
+1. Run `set_env.sh`
+2. Manually
+    1. Create a new virtual environment using your preferred tool
+    2. Install packages in `requirements.txt` in your enviroment
+
+### Running notebooks
+There are two alternatives:
+1. Run `start_jupyter_lab.sh`
+2. Manually
+    1. Activate your virtual environment
+    2. Run jupyter lab (`jupyter lab`), with the project root to its path
