@@ -1,13 +1,7 @@
 import numpy
 import pytest
 
-from src.attractor_helpers import get_max_period, has_duplicated_states, get_attractor_and_period
-
-
-def test_get_max_period():
-    test_state = numpy.zeros([2, 3])
-
-    assert 6 == get_max_period(test_state)
+from src.saved_state_helpers import has_duplicated_states, get_attractor_and_period
 
 
 @pytest.mark.parametrize(
@@ -26,7 +20,8 @@ def test_get_max_period():
     ]
 )
 def test_has_duplicated_states_duplicated(test_saved_states, duplicated):
-    assert duplicated == has_duplicated_states(test_saved_states)
+    assert has_duplicated_states(test_saved_states) == duplicated
+
 
 @pytest.mark.parametrize(
     "test_saved_states,expected_attractor,expected_period",
