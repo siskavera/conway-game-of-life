@@ -6,6 +6,10 @@ from src.conway.conway import get_next_state
 from src.cellular_automata.saved_state_helpers import has_duplicated_states, get_attractor_and_period_from_saved_states
 
 
+class AttractorNotFoundError(Exception):
+    pass
+
+
 class CellularAutomata():
     def __init__(self, shape=None, initial_state=None):
         if initial_state is not None and shape is not None:
@@ -74,6 +78,9 @@ class CellularAutomata():
     def run_until_attractor_found(self, n_max_steps=100):
         for _ in self.evolve_and_check_for_attractor(n_max_steps, True):
             pass
+
+        if self.attractor is None:
+            raise AttractorNotFoundError("Attractor not found after %s steps" % n_max_steps)
 
     def evolve_simple(self, n_max_steps):
         for i in range(n_max_steps):

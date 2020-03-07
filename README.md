@@ -27,3 +27,6 @@ There are two alternatives:
 2. Manually
     1. Activate your virtual environment
     2. Run jupyter lab (`jupyter lab`), with the project root to its path
+
+### Running simulations
+`PYTHONPATH="./" python src/run_simulations.py `

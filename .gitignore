@@ -10,3 +10,6 @@ venv/
 
 # IDE
 .idea/
+
+# Simulation results
+data/
