@@ -7,8 +7,8 @@ INITIAL_STATES = "initial_states"
 MOVIE = "movie"
 INTERACTIVE_PLOT = "interactive_plot"
 VISUALISATION_TYPE_EXTENSION_MAP = {
-    MOVIE: "mp4",
-    INTERACTIVE_PLOT: "html"
+    MOVIE: ".mp4",
+    INTERACTIVE_PLOT: ".html"
 }
 
 
