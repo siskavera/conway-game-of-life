@@ -1,7 +1,7 @@
 import numpy
 import plotly.graph_objs as go
 
-from src.animation.animation_config import PLOT_LAYOUT
+from src.visualisation.animation_config import PLOT_LAYOUT
 
 
 def get_title(i_step, attractor_found):
@@ -13,11 +13,11 @@ def get_title(i_step, attractor_found):
     return title
 
 
-def create_animation(initial_state, automata, n_steps):
-    x = numpy.arange(initial_state.shape[0])
-    y = numpy.arange(initial_state.shape[1])
+def create_animation(automata, n_steps, output_path):
+    x = numpy.arange(automata.state.shape[0])
+    y = numpy.arange(automata.state.shape[1])
 
-    data = [go.Heatmap(x=x, y=y, z=initial_state, showscale=False,
+    data = [go.Heatmap(x=x, y=y, z=automata.state, showscale=False,
                        colorscale=[(0, "dimgrey"), (1, "gainsboro")],
                        zmin=0, zmax=1)]
     frames = [
@@ -32,6 +32,7 @@ def create_animation(initial_state, automata, n_steps):
         } for i, state in enumerate(automata.evolve_and_check_for_attractor(n_steps))
     ]
 
-    return go.Figure(data=data,
+    fig = go.Figure(data=data,
                      frames=frames,
                      layout=PLOT_LAYOUT)
+    fig.write_html(output_path, auto_open=True)
