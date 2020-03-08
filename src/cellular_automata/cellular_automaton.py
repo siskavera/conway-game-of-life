@@ -10,7 +10,7 @@ class AttractorNotFoundError(Exception):
     pass
 
 
-class CellularAutomata():
+class CellularAutomaton():
     def __init__(self, shape=None, initial_state=None):
         if initial_state is not None and shape is not None:
             if shape != initial_state.shape:

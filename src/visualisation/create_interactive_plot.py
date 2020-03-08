@@ -13,7 +13,7 @@ def get_title(i_step, attractor_found):
     return title
 
 
-def create_animation(automata, n_steps, output_path):
+def create_interactive_plot(automata, n_steps, output_path):
     x = numpy.arange(automata.state.shape[0])
     y = numpy.arange(automata.state.shape[1])
 
@@ -35,4 +35,4 @@ def create_animation(automata, n_steps, output_path):
     fig = go.Figure(data=data,
                      frames=frames,
                      layout=PLOT_LAYOUT)
-    fig.write_html(output_path, auto_open=True)
+    fig.write_html(output_path)
