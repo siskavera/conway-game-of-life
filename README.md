@@ -65,17 +65,18 @@ data_dir
 
 `movie`: Folder for future movies generated for chosen runs.
 
-### Visualising simulations
-The script `src/generate_visualisation.py` can generate visualisations for initial states from a
+### Run and visualise single simulation
+The script `src/run_single_simulation.py` can generate visualisations for initial states from a
 simulation or custom defined initial states. The script requires that the project root is in the 
-Python path (e.g. `PYTHONPATH="./" python src/generate_visualisation.py.py ...`  from a Linux terminal).
+Python path (e.g. `PYTHONPATH="./" python src/run_single_simulation.py.py ...`  from a Linux terminal).
 
 The program takes the following command line arguments:
 * `-d`/`-data_dir`: Directory of the simulation.
 * `-r`/`-run_id`: ID of the run in the simulation. Default: 1
 * `-i`/`-initial_state_path`: Path to a custom initial state.
-* `-a`/`--visualisation_type`: `movie` or `interactive_plot`. Default: `interactive_plot`
-* `-n`/`--n_steps`: Number of steps to visualise. Default: 30
+* `-n`/`--n_steps`: Number of steps to run. Default: 30
+* `-m`/`--movie`: Generate movie (mp4). Default: `False`
+* `-p`/`--interactive_plot`: Generate interactive plot (html). Default: `False`
 
  At least one of `data_dir` and `initial_state_path` needs to be provided. `data_dir` takes precedence.
  

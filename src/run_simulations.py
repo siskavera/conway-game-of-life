@@ -12,6 +12,7 @@ from src.cellular_automata.cellular_automaton import CellularAutomaton, Attracto
 from src.data_dir import INITIAL_STATES, ensure_data_dir_and_subdirs, get_default_data_dir
 
 logging.basicConfig(level=logging.INFO)
+logging.getLogger('matplotlib.animation').setLevel(logging.WARNING)  # This package is very verbose
 
 
 def run_simulations(automata_size, n_simulations, data_dir):
