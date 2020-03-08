@@ -2,18 +2,9 @@ import copy
 
 import numpy
 import plotly.graph_objs as go
-from plotly.graph_objects import layout
 
 from src.visualisation.animation_config import PLOT_LAYOUT, SLIDERS
-
-
-def get_title(i_step, attractor_found):
-    title = "Conway's Game of Life<br>"
-    title += "Step {}".format(i_step)
-    if attractor_found:
-        title += ", System reached attractor"
-
-    return title
+from src.visualisation.get_title import get_title
 
 
 def create_interactive_plot(automata, n_steps, output_path):
