@@ -1,6 +1,6 @@
 import os
 import pathlib
-
+import uuid
 
 DATA_DIR = pathlib.Path(os.path.realpath(__file__)).parent.parent.joinpath("data")
 INITIAL_STATES = "initial_states"
@@ -12,15 +12,11 @@ VISUALISATION_TYPE_EXTENSION_MAP = {
 }
 
 
-def get_data_dir(simulation_name):
-    data_dir = pathlib.Path(DATA_DIR).joinpath(simulation_name)
-
-    return data_dir
+def get_default_data_dir():
+    return pathlib.Path(DATA_DIR).joinpath(str(uuid.uuid4()))
 
 
-def ensure_data_dir_and_subdirs(simulation_name):
-    data_dir = get_data_dir(simulation_name)
-
+def ensure_data_dir_and_subdirs(data_dir):
     data_dir.mkdir(parents=True, exist_ok=True)
 
     data_dir.joinpath(INITIAL_STATES).mkdir(exist_ok=True)

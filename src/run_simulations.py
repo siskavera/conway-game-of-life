@@ -1,7 +1,7 @@
 import argparse
 import logging
 import os
-import uuid
+import pathlib
 import warnings
 
 import numpy
@@ -9,14 +9,13 @@ import pandas
 from tqdm import tqdm
 
 from src.cellular_automata.cellular_automaton import CellularAutomaton, AttractorNotFoundError
-from src.data_dir import get_data_dir, INITIAL_STATES, ensure_data_dir_and_subdirs
+from src.data_dir import INITIAL_STATES, ensure_data_dir_and_subdirs, get_default_data_dir
 
 logging.basicConfig(level=logging.INFO)
 
 
-def run_simulations(automata_size, n_simulations, simulation_name):
-    data_dir = get_data_dir(simulation_name)
-    ensure_data_dir_and_subdirs(simulation_name)
+def run_simulations(automata_size, n_simulations, data_dir):
+    ensure_data_dir_and_subdirs(data_dir)
 
     logging.info("Running {n} simulations on a {a}x{a} grid.".format(n=args.n_simulations, a=args.automata_size))
     logging.info("Results will be saved under {data_folder}.".format(data_folder=data_dir))
@@ -62,12 +61,16 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run Cellular Automata simulations.")
     parser.add_argument("-a", "--automata_size", type=int,
                         help="size of the automata state (a square grid)")
-    parser.add_argument("-n", "--n-_imulations", type=int,
+    parser.add_argument("-n", "--n_simulations", type=int,
                         help="number of simulations run")
-    parser.add_argument("-s", "--simulation_name", type=str,
-                        help="name of simulation, determines data dir")
+    parser.add_argument("-d", "--data_dir", type=str,
+                        help="directory to save the data to")
 
-    parser.set_defaults(automata_size=6, n_simulations=100, simulation_name = str(uuid.uuid4()))
+    parser.set_defaults(automata_size=6, n_simulations=100)
     args = parser.parse_args()
+    if args.data_dir:
+        data_dir = pathlib.Path(args.data_dir)
+    else:
+        data_dir = get_default_data_dir()
 
-    run_simulations(args.automata_size, args.n_simulations, args.simulation_name)
+    run_simulations(args.automata_size, args.n_simulations, data_dir)
