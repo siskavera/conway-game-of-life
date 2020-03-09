@@ -28,7 +28,7 @@ class TestInit():
     def test_state_and_initial_state(self):
         initial_state = numpy.random.randint(2, size=(3, 3))
 
-        test_ca = cellular_automaton.CellularAutomaton(initial_state=initial_state, shape=(5, 6))
+        test_ca = cellular_automaton.CellularAutomaton(initial_state=initial_state, shape=(3, 3))
 
         assert (3, 3) == test_ca.state.shape
         numpy.testing.assert_array_equal(initial_state, test_ca.state)

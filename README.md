@@ -26,20 +26,19 @@ There are two alternatives to run Jupyter lab:
 1. Run `start_jupyter_lab.sh`
 2. Manually
     1. Activate your virtual environment
-    2. Run jupyter lab (`jupyter lab`), with the project root to its path
+    2. Run jupyter lab (`jupyter lab`), with the `src` folder added to its path
+    (e.g. `PYTHONPATH=$(pwd)/src jupyter lab` when run from project root)
 
 There are two notebooks:
 1. `Attractors.ipynb`: Simplistic analysis of generated simulations
-2. `SimpleVisualisation.pynb`: Simple visualisation of a single simulation, with self-actualising plots.
+2. `SimpleVisualisation.ipynb`: Simple visualisation of a single simulation, with self-actualising plots.
 
 ### Running simulations with random initial conditions
 The script `src/run_simulations.py` can run an arbitrary number of simulations with random
-initial conditions (each cell initialised uniformly at random). The script requires that the
-project root is in the Python path (e.g. `PYTHONPATH="./" python src/run_simulations.py ...` 
-from a Linux terminal).
+initial conditions (each cell initialised uniformly at random).
 
 The program takes the following command line arguments:
-* `-d`/`-data_dir`: Directory to save the data to. Obligatory.
+* `-d`/`--data_dir`: Directory to save the data to. Obligatory.
 * `-a`/`--automata_size`: Size of the automata state (square grid). Default: 6
 * `-n`/`--n_simulations`: Number of simulations to run. Default: 100
 
@@ -65,15 +64,18 @@ data_dir
 
 `movie`: Folder for future movies generated for chosen runs.
 
+ #### Execution
+ 1. Activate your virtual environment e.g. `source venv/bin/activate`
+ 2. Execute the script. e.g. `python src/run_simulations.py -d data/sample_run -n 100`
+
 ### Run and visualise single simulation
 The script `src/run_single_simulation.py` can generate visualisations for initial states from a
-simulation or custom defined initial states. The script requires that the project root is in the 
-Python path (e.g. `PYTHONPATH="./" python src/run_single_simulation.py.py ...`  from a Linux terminal).
+simulation or custom defined initial states.
 
 The program takes the following command line arguments:
-* `-d`/`-data_dir`: Directory of the simulation.
-* `-r`/`-run_id`: ID of the run in the simulation. Default: 1
-* `-i`/`-initial_state_path`: Path to a custom initial state.
+* `-d`/`--data_dir`: Directory of the simulation.
+* `-r`/`--run_id`: ID of the run in the simulation. Default: 1
+* `-i`/`--initial_state_path`: Path to a custom initial state.
 * `-n`/`--n_steps`: Number of steps to run. Default: 30
 * `-m`/`--movie`: Generate movie (mp4). Default: `False`
 * `-p`/`--interactive_plot`: Generate interactive plot (html). Default: `False`
@@ -83,3 +85,15 @@ The program takes the following command line arguments:
  In case `data_dir` is provided, the visualisation will be saved in the corresponding subfolder
  (`video` or `interactive-plot`). In case `initial_state_path` is provided, it will be saved in the
  same folder.
+ 
+ #### Execution
+ 1. Activate your virtual environment e.g. `source venv/bin/activate`
+ 2. Execute the script. e.g. `python src/run_single_simulation.py -d data/sample_run -p  -n 50`
+ 
+ ### Run test suite
+ 1. Activate your virtual environment. e.g. `source venv/bin/activate`
+ 2. Change to `src`
+ 3. Execute all tests: `python -m pytest`
+ 
+ *Note: Only the core components (cellular automata and evolution rule for Conway's Game of Life)
+ are covered with unit tests.*
