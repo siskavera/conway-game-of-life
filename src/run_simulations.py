@@ -2,18 +2,19 @@ import argparse
 import logging
 import os
 import pathlib
+import sys
 import warnings
 
 import numpy
 import pandas
 from tqdm import tqdm
 
-from src.cellular_automata.cellular_automaton import CellularAutomaton, AttractorNotFoundError
-from src.data_dir import INITIAL_STATES, ensure_data_dir_and_subdirs, get_default_data_dir
+from cellular_automata.cellular_automaton import CellularAutomaton, AttractorNotFoundError
+from project_paths import INITIAL_STATES, ensure_data_dir_and_subdirs, get_default_data_dir, PROJECT_ROOT
 
+sys.path.append(PROJECT_ROOT)
 logging.basicConfig(level=logging.INFO)
 logging.getLogger('matplotlib.animation').setLevel(logging.WARNING)  # This package is very verbose
-
 
 def run_simulations(automata_size, n_simulations, data_dir):
     ensure_data_dir_and_subdirs(data_dir)

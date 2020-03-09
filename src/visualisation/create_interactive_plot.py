@@ -3,8 +3,8 @@ import copy
 import numpy
 import plotly.graph_objs as go
 
-from src.visualisation.animation_config import PLOT_LAYOUT, SLIDERS
-from src.visualisation.get_title import get_title
+from visualisation.animation_config import PLOT_LAYOUT, SLIDERS
+from visualisation.get_title import get_title
 
 
 def create_interactive_plot(automata, n_steps, output_path):

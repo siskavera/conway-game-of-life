@@ -2,7 +2,8 @@ import os
 import pathlib
 import uuid
 
-DATA_DIR = pathlib.Path(os.path.realpath(__file__)).parent.parent.joinpath("data")
+PROJECT_ROOT = pathlib.Path(os.path.realpath(__file__)).parent
+DATA_DIR = PROJECT_ROOT.parent.joinpath("data")
 INITIAL_STATES = "initial_states"
 MOVIE = "movie"
 INTERACTIVE_PLOT = "interactive_plot"

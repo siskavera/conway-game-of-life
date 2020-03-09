@@ -3,7 +3,7 @@ import logging
 import seaborn as sns
 from matplotlib import pyplot as plt, animation
 
-from src.visualisation.get_title import get_title
+from visualisation.get_title import get_title
 
 
 def create_movie(automata, n_steps, output_path):

@@ -2,8 +2,8 @@ import warnings
 
 import numpy
 
-from src.conway.conway import get_next_state
-from src.cellular_automata.saved_state_helpers import has_duplicated_states, get_attractor_and_period_from_saved_states
+from conway.conway_rule import get_next_state
+from cellular_automata.saved_state_helpers import has_duplicated_states, get_attractor_and_period_from_saved_states
 
 
 class AttractorNotFoundError(Exception):

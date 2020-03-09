@@ -1,15 +1,17 @@
 import argparse
 import logging
 import pathlib
+import sys
 
 import numpy
 import numpy as np
 
-from src.cellular_automata.cellular_automaton import CellularAutomaton
-from src.data_dir import INITIAL_STATES, VISUALISATION_TYPE_EXTENSION_MAP, MOVIE, INTERACTIVE_PLOT
-from src.visualisation.create_interactive_plot import create_interactive_plot
-from src.visualisation.create_movie import create_movie
+from cellular_automata.cellular_automaton import CellularAutomaton
+from project_paths import INITIAL_STATES, VISUALISATION_TYPE_EXTENSION_MAP, MOVIE, INTERACTIVE_PLOT, PROJECT_ROOT
+from visualisation.create_interactive_plot import create_interactive_plot
+from visualisation.create_movie import create_movie
 
+sys.path.append(PROJECT_ROOT)
 logging.basicConfig(level=logging.INFO)
 logging.getLogger('matplotlib.animation').setLevel(logging.WARNING)  # This package is very verbose
 

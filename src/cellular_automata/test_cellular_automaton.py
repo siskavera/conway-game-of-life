@@ -3,7 +3,7 @@ from unittest.mock import patch
 
 import pytest
 
-from src.cellular_automata import cellular_automaton
+from cellular_automata import cellular_automaton
 
 
 class TestInit():
