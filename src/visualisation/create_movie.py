@@ -13,12 +13,12 @@ def create_movie(automata, n_steps, output_path):
 
     def init():
         sns.heatmap(time_series[0], vmax=.8, square=True, cbar=False)
-        plt.title(get_title(0, automata.attractor is not None, newline="\n"))
+        plt.title(get_title(0, automata, newline="\n"))
 
     def animate(i):
         data = time_series[i]
         sns.heatmap(data, vmax=.8, square=True, cbar=False)
-        plt.title(get_title(i, automata.attractor is not None, newline="\n"))
+        plt.title(get_title(i, automata, newline="\n"))
 
     anim = animation.FuncAnimation(fig, animate, init_func=init, frames=n_steps, repeat=False)
     logging.info("Saving video to %s" % output_path)

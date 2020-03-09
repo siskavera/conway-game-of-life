@@ -21,7 +21,7 @@ def create_interactive_plot(automata, n_steps, output_path):
                 "type": "heatmap",
             }],
             "layout": {
-                "title": get_title(i, automata.attractor is not None)
+                "title": get_title(i, automata)
             },
             "name": i
         } for i, state in enumerate(automata.evolve_and_check_for_attractor(n_steps))
